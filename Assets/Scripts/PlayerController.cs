@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public GameObject l49;
+    public GameObject bara;
     public float speed;
     private float horizontalInput;
     public float jumpForce;
@@ -24,12 +26,17 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isGrounded = false;
         }
+
+        //Switch to Slime once 'E' is pressed
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            l49.SetActive(false);
+            bara.SetActive(true);
+        }
     }
 
     private void FixedUpdate()
     {
-        //rb.AddForce(Vector2.right * horizontalInput *  speed, ForceMode2D.Impulse);
-
         transform.Translate(Vector2.right * horizontalInput * speed * Time.deltaTime);
     }
     void OnCollisionEnter2D(Collision2D collision)
