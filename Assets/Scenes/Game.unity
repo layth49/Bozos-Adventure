@@ -551,7 +551,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1237762998}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e22c7d1ee9e5154291be3c40824f043, type: 3}
   m_Name: 
@@ -739,7 +739,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &1605883293
 Animator:
   serializedVersion: 5
@@ -908,6 +908,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fffac6d06cf780f40ace709889cf4835, type: 3}
   rb: {fileID: 0}
   l49: {fileID: 1722220062}
+  bara: {fileID: 1605883292}
   speed: 5
   jumpForce: 6
   doubleJumpForce: 4
@@ -5963,7 +5964,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!50 &1722220064
 Rigidbody2D:
   serializedVersion: 4
@@ -6067,6 +6068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  l49: {fileID: 1722220062}
   bara: {fileID: 1605883292}
   speed: 5
   jumpForce: 5
