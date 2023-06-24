@@ -1,5 +1,4 @@
 # Bozo's Adventure
-***DISCONTINUED***
 
 # Features
 
@@ -10,9 +9,8 @@
 • Feature
 
 # DEV LOG
-## _Bozo's Adventure is no longer being worked on due to lack of effort on my team_
 
-## ~~_Version 0.3 is currently being developed_~~
+## _Version 0.3 is currently being developed_
 
 
 ## Version 0.2 is LIVE!
