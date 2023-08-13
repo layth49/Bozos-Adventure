@@ -12,8 +12,8 @@ Description
 
 # DEV LOG
 
-## _Version 0.3 is currently being developed_
-
+## ~~_Version 0.3 is currently being developed_~~
+### _Bozo's Adventure is not currently being worked on due to lack of intrest and effort to a specfic team member_
 
 ## Version 0.2 is LIVE!
 >At 5 am (again) 6/14/23
@@ -29,7 +29,7 @@ Description
 
         • Particle was added
 
-        #49 CURRENTLY TELEPORTS TO MOUSE POSITION
+        ***49 CURRENTLY TELEPORTS TO MOUSE POSITION***
 ____________________________________________
 **Slime was added!**
 
