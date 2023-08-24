@@ -13,7 +13,7 @@ Description
 # DEV LOG
 
 ## ~~_Version 0.3 is currently being developed_~~
-### _Bozo's Adventure is not currently being worked on due to a lack of interest and effort from a specfic team member_
+### _Bozo's Adventure is not currently being worked on due to a lack of interest and effort from a core team member_
 
 ## Version 0.2 is LIVE!
 >At 5 am (again) 6/14/23
