@@ -20,6 +20,7 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+
     public void QuitGame()
     {
 #if UNITY_EDITOR
@@ -28,5 +29,4 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
 #endif
     }
-
 }
