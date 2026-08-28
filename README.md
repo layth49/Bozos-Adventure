@@ -1,15 +1,12 @@
 # Bozo's Adventure
 
-A 2D platformer about three bozos, built in Unity.
+A 2D platformer about three bozos, made in Unity.
 
-Three characters, three incompatible ways to move. **49** teleports to your cursor. **Slime** double-jumps. **AA** throws a hat. You swap between them mid-run with `E`, and the idea was that the same level could be solved three different ways — teleport over the gap, or chain a double-jump across it.
+Each character moves in a way the others can't. 49 teleports to your cursor, Slime double-jumps, and AA was supposed to throw a hat. You swap between them mid-run with `E`, so the idea was that one gap could be crossed three different ways.
 
-Two builds shipped (v0.1 and v0.2). v0.3 got as far as a third character and a first real map before the team moved on. The repo's still here and the build still runs.
+v0.1 and v0.2 shipped. v0.3 got as far as a third character and the start of a real map, then stalled out from a lack of interest across the team. The repo's still up and the build still runs.
 
-> **Status:** Archived at v0.2. Not in active development.
-> More on the project (including the v0.2 showcase video and the OST): **[layth49.com/bozos](https://layth49.com/bozos)**
-
----
+Archived at v0.2. Nobody's working on it. There's more about the project, including the v0.2 showcase video and the title track, at [layth49.com/bozos](https://layth49.com/bozos).
 
 ## Controls
 
@@ -18,46 +15,41 @@ Two builds shipped (v0.1 and v0.2). v0.3 got as far as a third character and a f
 | Move | `A` / `D` (or arrow keys) |
 | Jump | `Space` |
 | Switch character | `E` |
-| Teleport to cursor (**49** only) | Right mouse button |
-| Double jump (**Slime** only) | `Space` again, mid-air |
-| Throw hat (**AA** only, unfinished) | `F` |
+| Teleport to cursor (49 only) | Right mouse button |
+| Double jump (Slime only) | `Space` again, mid-air |
+| Throw hat (AA only, unfinished) | `F` |
 
-`E` cycles the roster: 49 → Slime → AA → 49.
+`E` cycles 49, then Slime, then AA, then back to 49.
 
----
+## The roster
 
-## The Roster
+### 49
 
-### 49 — the teleporter
-Right-click to warp to the mouse cursor. Fires an SFX and a two-part particle burst on use, then goes on cooldown (`coolDownSeconds` on `l49Controller`, set to 1.5s in the Game scene). Its planned attack, "Enderman's Breath" — a purple poison cloud — was never built.
+Right-click and he warps to the mouse cursor. Plays a sound, fires two particle systems, then sits on cooldown. The cooldown is `coolDownSeconds` on `l49Controller`, set to 1.5 in the Game scene. He was going to get an attack called Enderman's Breath, a purple poison cloud. That never got built.
 
-Script: [l49Controller.cs](Assets/Scripts/l49Controller.cs)
+[l49Controller.cs](Assets/Scripts/l49Controller.cs)
 
-### Slime — the double-jumper
-Two consecutive jumps off the ground. Smoothest character for crossing gaps. Every jump plays one of five random slime SFX. A hammer-hand melee was planned and never built.
+### Slime
 
-Script: [SlimeController.cs](Assets/Scripts/SlimeController.cs)
+Jump, then jump again in mid-air. Best of the three at crossing gaps. Every jump picks one of five slime sounds at random. The hammer-hand melee that was planned for him never happened either.
 
-### AA — the hat-thrower *(never shipped)*
-The intended third roster slot for v0.3. Got as far as sprite frames and a working hat-throw prototype (`F` spawns a hat that travels right and despawns after half a second). Never made it into a shipped build, and the sprite frames never made it into an animator.
+[SlimeController.cs](Assets/Scripts/SlimeController.cs)
 
-Scripts: [AAController.cs](Assets/Scripts/AAController.cs), [HatLogic.cs](Assets/Scripts/HatLogic.cs)
+### AA (never shipped)
 
----
+The third roster slot for v0.3. Press `F` and he spawns a hat that flies right and deletes itself after half a second. That's as far as it got. His sprite frames are in `Assets/Animation/AA/`, but none of them were ever wired into an animator, and he never made it into a build.
+
+[AAController.cs](Assets/Scripts/AAController.cs), [HatLogic.cs](Assets/Scripts/HatLogic.cs)
 
 ## Running it
 
-**Play the build:** a WebGL build lives in [`WebGL Builds/`](WebGL%20Builds). It needs to be served over HTTP — opening `index.html` from the filesystem won't work, since the Brotli-compressed `.br` files require proper `Content-Encoding` headers.
+There's a WebGL build in [`WebGL Builds/`](WebGL%20Builds). It has to be served over HTTP. Opening `index.html` off the filesystem won't work, because the Brotli-compressed `.br` files need the right `Content-Encoding` headers.
 
 ```bash
 cd "WebGL Builds" && python -m http.server 8000
 ```
 
-**Open the source:** the project targets **Unity 2022.3.5f1**. Clone it, open the folder in Unity Hub, and load `Assets/Scenes/MainMenu.unity`.
-
-> The committed WebGL build was made with 2021.3.26f1, one editor version behind the project files.
-
----
+For the source, the project is on Unity 2022.3.5f1. Open the folder in Unity Hub and load `Assets/Scenes/MainMenu.unity`. The committed WebGL build is one editor version behind, on 2021.3.26f1.
 
 ## Project layout
 
@@ -65,78 +57,96 @@ cd "WebGL Builds" && python -m http.server 8000
 Assets/
   Scenes/            MainMenu, SettingsMenu, Game
   Scripts/           character controllers, menus, hat logic
-  Animation/         sprite art + animator controllers, one folder per character (49, AA, Slime)
+  Animation/         sprite art and animator controllers, one folder per character
   Prefabs/           Hat.prefab
   Music/             title screen theme
-  SFX/               teleport + 5 slime jump sounds
+  SFX/               teleport sound, 5 slime jump sounds
   Misc/              game icon, title screen background
   Hidden Folders/    Hovl Studio particle pack (third-party)
 WebGL Builds/        committed web build
 ```
 
-Built with Unity's 2D feature set, TextMesh Pro, and the Input System package. All gameplay code is C#, in [`Assets/Scripts/`](Assets/Scripts).
-
----
+All the gameplay code is C# in [`Assets/Scripts/`](Assets/Scripts). The project pulls in Unity's 2D packages plus TextMesh Pro and the Input System.
 
 ## Known issues
 
-These were still on the board when the project wrapped. None of them were fixed.
+Three bugs were on the board when everything stopped. All three are still there.
 
-**49 can't teleport during a character switch.** Swapping to 49 mid-cooldown freezes the cooldown counter. The fix was to give the switcher its own cooldown so the two couldn't desync.
+49 can't teleport during a character switch. Swap to him mid-cooldown and the counter freezes. Giving the switcher its own cooldown would have sorted it.
 
-**Slime's double jump is scuffed.** Input timing is too strict — it feels like a frame-perfect cancel about half the time. Wants a coyote-time window and an input buffer.
+Slime's double jump is scuffed. The input window is too tight, so about half the time it feels like a frame-perfect cancel instead of a jump. It wants coyote time and an input buffer.
 
-**Movement isn't smooth.** Velocity flips abruptly on direction changes, because horizontal movement goes through `transform.Translate` on raw axis input. Routing input-to-velocity through `Vector3.Lerp` or `SmoothDamp` would fix it.
+Movement isn't smooth. Horizontal movement runs `transform.Translate` straight off the raw input axis, so velocity snaps whenever you change direction. Running the input through `Vector3.Lerp` or `SmoothDamp` fixes it.
 
-There's also dead code: [CharacterSwitcher.cs](Assets/Scripts/CharacterSwitcher.cs) has an unreachable `else if` branch on the same `KeyCode.E` condition. The switching that actually works is duplicated across each of the three character controllers.
-
----
+Separately, [CharacterSwitcher.cs](Assets/Scripts/CharacterSwitcher.cs) is dead code. Its `else if` tests the same `KeyCode.E` as the `if` above it, so the second branch can never run. The switching that actually works is copy-pasted into each of the three character controllers instead.
 
 ## Dev log
 
-### ~~Version 0.3~~ — shelved
-*The Overlands. Cancelled.*
+### ~~Version 0.3~~ shelved
 
-- Teleport balancing (keeping 49 from soft-breaking encounters)
-- AA, the third playable character
-- The Overlands, the first proper map
+The Overlands. Never finished.
 
-Queued behind it, never started: an animations pass, a nerf to teleporting, an upgraded character switcher with its own cooldown, the two planned attacks, and a bug-fix pass on the issues above.
+• Teleport balancing, so 49 couldn't break encounters
 
+• AA, a third playable character
+
+• The Overlands, the first proper map
+
+Queued behind it on the Trello, none of it started: an animations pass, a teleport nerf, a switcher with its own cooldown, the two attacks, and a sweep through the bugs above.
+
+### Version 0.2 is LIVE!
+>At 5 am (again) 6/14/23
 <details>
-<summary><b>Version 0.2</b> — shipped 6/14/23, at 5 AM (again)</summary>
+<summary>Version 0.2 featured:</summary>
+ㅤ
 
-**Teleportation for 49 was added!**
-- Cooldown was added (1 second)
-- SFX was added
-- Particle was added
-- *49 currently teleports to mouse position*
+  **Teleportation for 49 was added!**
 
+        • Cooldown was added (1 second)
+
+        • SFX was added
+
+        • Particle was added
+
+        ***49 CURRENTLY TELEPORTS TO MOUSE POSITION***
+____________________________________________
 **Slime was added!**
-- Double jumping for Slime was added
-- 5 random SFX play every time you jump
 
-**A character switcher was added!**
-- Switch between 49 and Slime with `E`
+    • Double Jumping for Slime was added
 
-*Unfinished:* particle for double jumping.
+    • 5 random SFX play every time you jump
+____________________________________________
+**A Character Switcher was added!**
+
+    • Switch between 49 and Slime with 'E'
+____________________________________________
+The **_Unfinished_** features were:
+
+    • Particle for double jumping
 </details>
 
+### Version 0.1 is LIVE!
+>At 5 AM 5/30/23
 <details>
-<summary><b>Version 0.1</b> — shipped 5/30/23, at 5 AM</summary>
+<summary>Version 0.1 featured:</summary>
 
-- A main menu
-- A settings menu
-- Background music that travels across certain scenes
-- A floor
-- A few platforms to jump on
-- A working player with a sprite
+    • A Main Menu
 
-*Unfinished:* sprites with animations.
+    • A Settings Menu
+
+    • Background Music that travels across certain scenes
+
+    • A Floor
+
+    • A few platforms to jump on
+
+    • A working Player with a sprite
+____________________________________________
+The **_Unfinished_** features were:
+
+    • Sprites with animations
 </details>
-
----
 
 ## License
 
-No license file. All rights reserved by default — ask before reusing the assets.
+No license file, so default copyright applies. Ask before reusing the art or the audio.
